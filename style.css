@@ -1,0 +1,139 @@
+:root {
+    --ink-color: #2b2323;
+    --ink-red: #b33939;
+    --paper-bg: #fdfaf0;
+    --line-blue: #d1e1f0;
+    --margin-red: #ffadad;
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Caveat', cursive;
+    background-color: var(--paper-bg);
+    background-image: 
+        linear-gradient(var(--line-blue) 1px, transparent 1px),
+        url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    background-size: 100% 2.2rem, auto;
+    color: var(--ink-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-size: 1.3rem;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 35px;
+    width: 2px;
+    background-color: var(--margin-red);
+    z-index: 10;
+    opacity: 0.5;
+}
+
+/* --- LOADER --- */
+#loader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--paper-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.liquid-photo {
+    width: 180px;
+    height: 180px;
+    border: 4px solid var(--ink-color);
+    box-shadow: 6px 6px 0 var(--ink-red);
+    animation: premiumMorph 4s ease-in-out infinite;
+    overflow: hidden;
+    background: white;
+}
+
+.liquid-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes premiumMorph {
+    0%, 100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+    33% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; }
+    66% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; }
+}
+
+/* --- MAIN CONTENT --- */
+#main-content {
+    display: none;
+    opacity: 0;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 15px 60px 55px;
+    transition: opacity 1s ease;
+}
+
+.sketch-box {
+    position: relative;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid var(--ink-color);
+    padding: 20px;
+    margin-bottom: 35px;
+    border-radius: 3% 5% 4% 6% / 2% 2% 3% 5%;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+.sketch-box::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1px solid var(--ink-color);
+    border-radius: 5% 2% 4% 7% / 4% 3% 5% 2%;
+    pointer-events: none;
+}
+
+h1, h2, h3 { font-family: 'Architects Daughter', cursive; }
+h2 { color: var(--ink-red); margin-bottom: 20px; font-size: 1.6rem; border-bottom: 2px dashed var(--ink-color); display: inline-block;}
+
+.hero { display: flex; flex-direction: column; gap: 20px; }
+.hero-img { width: 130px; height: 130px; border: 3px solid var(--ink-color); transform: rotate(-2deg); box-shadow: 6px 6px 0 var(--ink-color); overflow: hidden; background: white; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; }
+.hero-text h1 { font-size: 2.2rem; line-height: 1.1; }
+
+.details-list { list-style: none; margin-top: 10px; }
+.details-list li { margin-bottom: 5px; font-size: 1.1rem; }
+.details-list b { color: var(--ink-red); }
+
+.icon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px;}
+.icon-item { text-align: center; padding: 10px 0; }
+.icon-item i { font-size: 1.8rem; display: block; margin-bottom: 5px; color: var(--ink-color); }
+.icon-item span { font-size: 0.85rem; font-weight: bold; display: block; }
+
+.education-item, .cert-item { margin-bottom: 15px; }
+.education-item h3, .cert-item h3 { font-size: 1.2rem; color: var(--ink-color); }
+.date-label { font-size: 0.9rem; color: var(--ink-red); font-weight: bold; }
+
+.contact-links { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.contact-btn { padding: 12px; text-decoration: none; color: var(--ink-color); border: 2px solid var(--ink-color); display: flex; align-items: center; justify-content: center; gap: 10px; background: white; border-radius: 5px 12px 5px 10px; }
+
+footer { text-align: center; margin-top: 30px; padding: 30px 10px; font-family: 'Architects Daughter', cursive; border-top: 1px dashed var(--ink-color); }
+.heart { color: var(--ink-red); display: inline-block; animation: beat 1s infinite; }
+@keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+@media (min-width: 600px) {
+    .hero { flex-direction: row; align-items: center; gap: 30px; }
+    .icon-grid { grid-template-columns: repeat(6, 1fr); }
+    .contact-links { grid-template-columns: repeat(3, 1fr); }
+    #main-content { padding-left: 80px; padding-right: 40px; }
+    body::before { left: 50px; }
+}
